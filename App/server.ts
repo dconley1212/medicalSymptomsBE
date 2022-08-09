@@ -1,8 +1,11 @@
-import express, { Request, Response, Application, request } from "express";
+import express, { Request, Response, Application } from "express";
+import * as dotenv from "dotenv";
+
+dotenv.config({ path: __dirname + "/.env" });
 
 const server: Application = express();
 
-const Port = 9000;
+const Port = process.env.Port || 9000;
 
 server.get("/", (req: Request, res: Response): void => {
   res.send("Hello Typescript with Node.js");
