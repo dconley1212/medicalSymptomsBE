@@ -33,7 +33,7 @@ dotenv.config({ path: __dirname + "/.env" });
 const server = (0, express_1.default)();
 server.use(express_1.default.json);
 server.use("/app/auth", authentication_1.default);
-const Port = process.env.Port || 9000;
+const Port = 9000;
 server.listen(Port, () => {
     console.log("Server is listening");
 });
