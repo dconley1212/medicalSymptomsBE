@@ -1,13 +1,13 @@
 import express, { Application } from "express";
 import * as dotenv from "dotenv";
-import authentication from "../authentication/authentication";
+import Router from "./authentication/authentication";
 
 dotenv.config({ path: __dirname + "/.env" });
 
 const server: Application = express();
 
 server.use(express.json);
-server.use("/auth", authentication);
+server.use("/app/auth", Router);
 
 const Port = process.env.Port || 9000;
 
