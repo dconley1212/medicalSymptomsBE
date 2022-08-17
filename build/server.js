@@ -31,8 +31,8 @@ const dotenv = __importStar(require("dotenv"));
 const authentication_1 = __importDefault(require("./authentication/authentication"));
 dotenv.config({ path: __dirname + "/.env" });
 const server = (0, express_1.default)();
-server.use(express_1.default.json);
-server.use("/app/auth", authentication_1.default);
+server.use(express_1.default.json());
+server.use("/auth", authentication_1.default);
 const Port = 9000;
 server.listen(Port, () => {
     console.log("Server is listening");

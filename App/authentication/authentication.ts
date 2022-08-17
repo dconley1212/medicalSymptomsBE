@@ -1,10 +1,11 @@
 import { Router, Request, Response } from "express";
 
-// 2. when building my routes should I build them as classes as I have seen some examples like that online.
+// Left off trying to get the route working, but I feel like it is because my Route
+// isn't even being hit when I run the server to listen for it.
 
 const router = Router();
 
-router.route("/login").get((req: Request, res: Response) => {
+router.route("/register").get((req: Request, res: Response) => {
   res.send("hello");
 });
 
