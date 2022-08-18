@@ -1,10 +1,14 @@
 require("ts-node/register");
+import * as dotenv from "dotenv";
+dotenv.config();
 
-module.exports = {
-  client: "pg",
-  connection: process.env.DEV_DATABASE_URL,
-  pool: {
-    min: 2,
-    max: 10,
+export const knexfile = {
+  development: {
+    client: "pg",
+    connection: process.env.DEV_DATABASE_URL,
+    pool: {
+      min: 2,
+      max: 10,
+    },
   },
 };
