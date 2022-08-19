@@ -1,9 +1,8 @@
-export type Environment = "local";
-
 export interface Config {
-  environment: Environment;
+  client: string;
+  connection: string;
+  pool: {
+    min: number;
+    max: number;
+  };
 }
-
-// export interface ProcessVariables {
-//   ENV?: Environment;
-// }

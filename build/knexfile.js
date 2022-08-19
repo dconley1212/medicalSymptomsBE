@@ -22,18 +22,18 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+exports.knexfile = void 0;
+require("ts-node/register");
 const dotenv = __importStar(require("dotenv"));
-const authentication_1 = __importDefault(require("./authentication/authentication"));
-dotenv.config({ path: __dirname + "/.env" });
-const server = (0, express_1.default)();
-server.use(express_1.default.json());
-server.use("/auth", authentication_1.default);
-const Port = process.env.PORT || 9000;
-server.listen(Port, () => {
-    console.log("Server is listening");
-});
+dotenv.config();
+exports.knexfile = {
+    development: {
+        client: "pg",
+        connection: process.env.DEV_DATABASE_URL,
+        pool: {
+            min: 2,
+            max: 10,
+        },
+    },
+};
