@@ -33,6 +33,12 @@ dotenv.config({ path: __dirname + "/.env" });
 const server = (0, express_1.default)();
 server.use(express_1.default.json());
 server.use("/auth", authentication_1.default);
+server.use((err, req, res, next) => {
+    res.status(err.status || 500).json({
+        custom: "Something went wrong",
+        message: err.message,
+    });
+});
 const Port = process.env.PORT || 9000;
 server.listen(Port, () => {
     console.log("Server is listening");

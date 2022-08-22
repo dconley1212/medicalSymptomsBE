@@ -6,13 +6,13 @@ export const checkAllFieldsFilled = (
   res: Response,
   next: NextFunction
 ) => {
-  const { username, password, phone_number } = req.body;
+  const { username, password, phoneNumber } = req.body;
 
   if (!username) {
     next({ status: 400, message: "missing username" });
   } else if (!password) {
     next({ status: 400, message: "missing password" });
-  } else if (!phone_number) {
+  } else if (!phoneNumber) {
     next({ status: 400, message: "missing phone number" });
   } else {
     next();
@@ -25,8 +25,7 @@ export const checkUsername = async (
   next: NextFunction
 ) => {
   try {
-    const { username } = req.body;
-    const exists = await getUserByFilter(username);
+    const exists = await getUserByFilter(req.body);
 
     if (!exists) {
       next();
