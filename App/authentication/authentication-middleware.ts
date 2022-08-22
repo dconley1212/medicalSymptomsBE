@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { getUserByFilter } from "./authentication-model";
 
-const checkAllFieldsFilled = (
+export const checkAllFieldsFilled = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -19,7 +19,7 @@ const checkAllFieldsFilled = (
   }
 };
 
-const checkUserName = async (
+export const checkUsername = async (
   req: Request,
   res: Response,
   next: NextFunction
