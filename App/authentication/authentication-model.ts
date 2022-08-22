@@ -1,9 +1,9 @@
 import { dbConfig } from "../database/db-config";
 
-function getUserByID(id: number) {
+export function getUserByID(id: number) {
   return dbConfig("users").where("id", id);
 }
 
-function getUserBy(filter: string) {
+export function getUserByFilter(filter: string) {
   return dbConfig("users").where(filter);
 }
