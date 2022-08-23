@@ -24,15 +24,16 @@ export const checkUsername = async (
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    const exists = await getUserByFilter(req.body);
+  next();
+  //   try {
+  //     const exists = await getUserByFilter(req.body);
 
-    if (!exists) {
-      next();
-    } else {
-      next({ status: 400, message: "username already exists" });
-    }
-  } catch (err) {
-    next(err);
-  }
+  //     if (!exists) {
+  //       next();
+  //     } else {
+  //       next({ status: 400, message: "username already exists" });
+  //     }
+  //   } catch (err) {
+  //     next(err);
+  //   }
 };
