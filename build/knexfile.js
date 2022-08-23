@@ -16,7 +16,6 @@ exports.config = {
         },
         migrations: {
             tableName: "knex_migrations",
-            directory: __dirname + "medicalSymptomsBE/app/database/migrations",
         },
     },
 };

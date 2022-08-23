@@ -17,7 +17,6 @@ export const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: "knex_migrations",
-      //   directory: __dirname + "medicalSymptomsBE/app/database/migrations",
     },
   },
 };
