@@ -1,8 +1,9 @@
 import type { Knex } from "knex";
+import path from "path";
 
 // Update with your config settings.
 
-const config: { [key: string]: Knex.Config } = {
+export const config: { [key: string]: Knex.Config } = {
   development: {
     client: "postgresql",
     connection: {
@@ -16,8 +17,7 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: "knex_migrations",
+      //   directory: __dirname + "medicalSymptomsBE/app/database/migrations",
     },
   },
 };
-
-module.exports = config;
