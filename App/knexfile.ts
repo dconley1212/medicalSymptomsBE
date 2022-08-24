@@ -18,5 +18,6 @@ export const config: { [key: string]: Knex.Config } = {
     migrations: {
       tableName: "knex_migrations",
     },
+    useNullAsDefault: true,
   },
 };

@@ -17,5 +17,6 @@ exports.config = {
         migrations: {
             tableName: "knex_migrations",
         },
+        useNullAsDefault: true,
     },
 };

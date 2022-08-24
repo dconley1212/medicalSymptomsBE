@@ -12,11 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.down = exports.up = void 0;
 function up(knex) {
     return __awaiter(this, void 0, void 0, function* () {
+        return knex.schema.createTable("users", (users) => {
+            users.increments("id").primary();
+            users.string("username").notNullable().unique();
+            users.string("password").notNullable();
+            users.string("phoneNumber").notNullable();
+        });
     });
 }
 exports.up = up;
 function down(knex) {
-    return __awaiter(this, void 0, void 0, function* () {
-    });
+    return __awaiter(this, void 0, void 0, function* () { });
 }
 exports.down = down;
