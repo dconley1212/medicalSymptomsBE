@@ -1,8 +1,6 @@
-import type { Knex } from "knex";
+import { Knex } from "knex";
 
-// Update with your config settings.
-
-module.exports = {
+export const config: { [key: string]: Knex.Config } = {
   development: {
     client: "pg",
     connection: {

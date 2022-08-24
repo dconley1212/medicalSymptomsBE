@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// Update with your config settings.
-module.exports = {
+exports.config = void 0;
+exports.config = {
     development: {
         client: "pg",
         connection: {
