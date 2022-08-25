@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import * as dotenv from "dotenv";
 import authentication from "./authentication/authentication";
+import cors from "cors";
 
 interface Error {
   status?: number;
@@ -12,6 +13,7 @@ dotenv.config({ path: __dirname + "/.env" });
 const server: Application = express();
 
 server.use(express.json());
+server.use(cors());
 server.use("/auth", authentication);
 server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(err.status || 500).json({

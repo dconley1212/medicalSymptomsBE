@@ -8,13 +8,9 @@ import bcrypt from "bcrypt";
 
 const router = Router();
 
-// running into an error with the filter function I believe in the model component
-// when I am pinging the route and I believe it is during the middleware checkUsername
-//I need to figure out how to implement the model correctly and check what the
-// necessary steps to testing correctly. For example: Can I test a route with
-// a function to insert into a database without migrating data? Or what are
-// the appropriate steps
-
+//running into an error with the middleware for some reason it seems. The endpoint is working
+// and adding users info to the database but the response back is sending an error that
+// the username already exists when it is added.
 router.post(
   "/register",
   checkAllFieldsFilled,
