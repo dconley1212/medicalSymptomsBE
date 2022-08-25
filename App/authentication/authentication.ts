@@ -24,15 +24,12 @@ router.post(
       const { username, password, phoneNumber } = req.body;
       const salt = bcrypt.genSaltSync(8);
       const hash = bcrypt.hashSync(password, salt);
-      // const newUser = await insertUser({
-      //   username,
-      //   password: hash,
-      //   phoneNumber,
-      // });
-      const newUser = { username, password: hash, phoneNumber };
+      const newUser = await insertUser({
+        username,
+        password: hash,
+        phoneNumber,
+      });
       res.status(200).json(newUser);
-
-      // res.send({ username: "jonny" });
     } catch (err) {
       next(err);
     }
