@@ -29,9 +29,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 const authentication_1 = __importDefault(require("./authentication/authentication"));
+const cors_1 = __importDefault(require("cors"));
 dotenv.config({ path: __dirname + "/.env" });
 const server = (0, express_1.default)();
 server.use(express_1.default.json());
+server.use((0, cors_1.default)());
 server.use("/auth", authentication_1.default);
 server.use((err, req, res, next) => {
     res.status(err.status || 500).json({

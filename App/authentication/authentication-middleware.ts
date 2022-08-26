@@ -24,12 +24,12 @@ export const checkUsername = async (
   res: Response,
   next: NextFunction
 ) => {
-  next();
   try {
     const { username } = req.body;
     const exists = await getUserByFilter(username);
+    console.log(exists);
 
-    if (!exists) {
+    if (exists.length === 0) {
       next();
     } else {
       next({ status: 400, message: "username already exists" });
