@@ -10,7 +10,8 @@ export function getUserByID(id: number) {
 }
 
 export function getUserByFilter(filter: string) {
-  return db("users").where("username", filter);
+  const user = db("users").where("username", filter);
+  return user;
 }
 
 export async function insertUser(user: user) {
