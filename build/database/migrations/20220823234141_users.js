@@ -22,6 +22,8 @@ function up(knex) {
 }
 exports.up = up;
 function down(knex) {
-    return __awaiter(this, void 0, void 0, function* () { });
+    return __awaiter(this, void 0, void 0, function* () {
+        return knex.schema.dropTableIfExists("users");
+    });
 }
 exports.down = down;

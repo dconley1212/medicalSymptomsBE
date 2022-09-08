@@ -16,7 +16,8 @@ function getUserByID(id) {
 }
 exports.getUserByID = getUserByID;
 function getUserByFilter(filter) {
-    return (0, db_config_1.db)("users").where("username", filter);
+    const user = (0, db_config_1.db)("users").where("username", filter);
+    return user;
 }
 exports.getUserByFilter = getUserByFilter;
 function insertUser(user) {
