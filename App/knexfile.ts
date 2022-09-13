@@ -1,7 +1,12 @@
 import type { Knex } from "knex";
 import * as dotenv from "dotenv";
+import { resolve } from "path";
 
-dotenv.config({ path: __dirname + "/.env" });
+/// left off with the error below when I tried to migrate the data to the database
+// I figured out the dot env file is work on the server.ts file so I need to figure out
+// how to get it working in the knexfile.ts or the knexfile-config.ts
+
+dotenv.config({ path: resolve(__dirname, "../../.env") });
 
 module.exports = {
   testing: {

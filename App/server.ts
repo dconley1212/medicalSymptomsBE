@@ -2,13 +2,14 @@ import express, { Application, Request, Response, NextFunction } from "express";
 import * as dotenv from "dotenv";
 import authentication from "./authentication/authentication";
 import cors from "cors";
+import { resolve } from "path";
 
 interface Error {
   status?: number;
   message?: string;
 }
 
-dotenv.config({ path: __dirname + "/.env" });
+dotenv.config({ path: resolve(__dirname, "../../.env") });
 
 const server: Application = express();
 
