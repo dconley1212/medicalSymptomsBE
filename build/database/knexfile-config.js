@@ -25,7 +25,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = void 0;
 const dotenv = __importStar(require("dotenv"));
-dotenv.config({ path: __dirname + "/.env" });
+const path_1 = require("path");
+dotenv.config({ path: (0, path_1.resolve)(__dirname, "../../../.env") });
 exports.config = {
     testing: {
         client: "pg",
@@ -47,8 +48,8 @@ exports.config = {
         client: "pg",
         connection: {
             database: "postgres",
-            user: "postgres",
-            password: "AmyandDave101918",
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
         },
         pool: {
             min: 2,

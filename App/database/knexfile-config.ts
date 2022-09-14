@@ -1,7 +1,8 @@
 import { Knex } from "knex";
 import * as dotenv from "dotenv";
+import { resolve } from "path";
 
-dotenv.config({ path: __dirname + "/.env" });
+dotenv.config({ path: resolve(__dirname, "../../../.env") });
 
 export const config: { [key: string]: Knex.Config } = {
   testing: {
@@ -24,8 +25,8 @@ export const config: { [key: string]: Knex.Config } = {
     client: "pg",
     connection: {
       database: "postgres",
-      user: "postgres",
-      password: "AmyandDave101918",
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
     },
     pool: {
       min: 2,

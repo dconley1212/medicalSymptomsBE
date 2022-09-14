@@ -7,6 +7,7 @@ import { resolve } from "path";
 // how to get it working in the knexfile.ts or the knexfile-config.ts
 
 dotenv.config({ path: resolve(__dirname, "../../.env") });
+console.log(process.env.PORT);
 
 module.exports = {
   testing: {
