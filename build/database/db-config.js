@@ -6,4 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.db = void 0;
 const knex_1 = __importDefault(require("knex"));
 const knexfile_config_1 = require("./knexfile-config");
-exports.db = (0, knex_1.default)(knexfile_config_1.config.development);
+const environment = process.env.DB_ENV || "development";
+exports.db = (0, knex_1.default)(knexfile_config_1.config[environment]);
