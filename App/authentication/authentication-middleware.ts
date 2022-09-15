@@ -28,8 +28,6 @@ export const checkUsername = async (
     const { username } = req.body;
     const exists = await getUserByFilter(username);
 
-    console.log(exists);
-
     if (exists.length === 0) {
       next();
     } else {

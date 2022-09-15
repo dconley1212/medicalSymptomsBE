@@ -22,7 +22,12 @@ function getUserByFilter(filter) {
 exports.getUserByFilter = getUserByFilter;
 function insertUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
-        const [newUser] = yield (0, db_config_1.db)("users").insert(user);
+        const [newUser] = yield (0, db_config_1.db)("users").insert(user, [
+            "id",
+            "username",
+            "password",
+        ]);
+        console.log(newUser);
         return newUser;
     });
 }

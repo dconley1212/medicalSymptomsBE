@@ -15,7 +15,13 @@ export function getUserByFilter(filter: string) {
 }
 
 export async function insertUser(user: user) {
-  const [newUser] = await db("users").insert(user);
+  const [newUser] = await db("users").insert(user, [
+    "id",
+    "username",
+    "password",
+  ]);
+
+  console.log(newUser);
 
   return newUser;
 }
