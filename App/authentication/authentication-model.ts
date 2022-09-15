@@ -21,7 +21,5 @@ export async function insertUser(user: user) {
     "password",
   ]);
 
-  console.log(newUser);
-
   return newUser;
 }
