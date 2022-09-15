@@ -30,9 +30,9 @@ exports.checkAllFieldsFilled = checkAllFieldsFilled;
 const checkUsername = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username } = req.body;
-        const [exists] = yield (0, authentication_model_1.getUserByFilter)(username);
+        const exists = yield (0, authentication_model_1.getUserByFilter)(username);
         console.log(exists);
-        if (exists.username !== username) {
+        if (exists.length === 0) {
             next();
         }
         else {

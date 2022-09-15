@@ -25,6 +25,7 @@ router.post(
         password: hash,
         phoneNumber,
       });
+
       res.status(200).json(newUser);
     } catch (err) {
       next(err);

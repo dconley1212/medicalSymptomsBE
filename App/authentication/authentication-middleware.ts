@@ -26,11 +26,11 @@ export const checkUsername = async (
 ) => {
   try {
     const { username } = req.body;
-    const [exists] = await getUserByFilter(username);
+    const exists = await getUserByFilter(username);
 
     console.log(exists);
 
-    if (exists.username !== username) {
+    if (exists.length === 0) {
       next();
     } else {
       next({ status: 400, message: "username already exists" });

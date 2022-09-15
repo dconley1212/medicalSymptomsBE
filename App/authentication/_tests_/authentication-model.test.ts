@@ -1,7 +1,13 @@
 import { getUserByFilter, insertUser } from "../authentication-model";
+import { db } from "../../database/db-config";
 
 test("it is the correct environment for the tests", () => {
   expect(process.env.DB_ENV).toBe("testing");
+});
+
+beforeAll(async () => {
+  await db.migrate.rollback();
+  await db.migrate.latest();
 });
 
 test("can insert a user ", async () => {
@@ -22,7 +28,7 @@ describe("Hobbit db access functions", () => {
 });
 
 /*
-got this error with my last test: error: select * from 
-"users" where "username" = $1 - relation "users" does not exist.
-I am wondering it I need to have a migration for the test database
+got this error with my last time trying to see if my tests work:
+ENOENT: no such file or directory, scandir 
+'/Users/conleyfam/Desktop/programmingProjects/medicalSymptomsBE/migrations'
 */
