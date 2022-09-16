@@ -3,14 +3,11 @@ import {
   checkAllFieldsFilled,
   checkUsername,
 } from "./authentication-middleware";
-import { insertUser } from "./authentication-model";
+import { insertUser, getUserByFilter, user } from "./authentication-model";
 import bcrypt from "bcrypt";
 
 const router = Router();
 
-//running into an error with the middleware for some reason it seems. The endpoint is working
-// and adding users info to the database but the response back is sending an error that
-// the username already exists when it is added.
 router.post(
   "/register",
   checkAllFieldsFilled,
@@ -27,6 +24,24 @@ router.post(
       });
 
       res.status(200).json(newUser);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+router.post(
+  "/login",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { username, password } = req.body;
+
+      const user: user[] = await getUserByFilter(username);
+
+      const match = await bcrypt.compare(password, user[0].password);
+
+      if (match) {
+      }
     } catch (err) {
       next(err);
     }

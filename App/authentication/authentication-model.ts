@@ -1,5 +1,5 @@
 import { db } from "../database/db-config";
-interface user {
+export interface user {
   username: string;
   password: string;
   phoneNumber: string;
