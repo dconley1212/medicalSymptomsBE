@@ -1,0 +1,6 @@
+# dotenv environmnet variables file
+.env 
+
+# pivate and public key
+private.key
+public.key
