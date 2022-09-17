@@ -9,25 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertUser = exports.getUserByFilter = exports.getUserByID = void 0;
-const db_config_1 = require("../database/db-config");
-function getUserByID(id) {
-    return (0, db_config_1.db)("users").where("id", id);
-}
-exports.getUserByID = getUserByID;
-function getUserByFilter(filter) {
-    const user = (0, db_config_1.db)("users").where("username", filter);
-    return user;
-}
-exports.getUserByFilter = getUserByFilter;
-function insertUser(user) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const [newUser] = yield (0, db_config_1.db)("users").insert(user, [
-            "id",
-            "username",
-            "password",
-        ]);
-        return newUser;
-    });
-}
-exports.insertUser = insertUser;
+describe("[POST] tests", () => {
+    test("[POST] register user api returns 200 ok status", () => __awaiter(void 0, void 0, void 0, function* () { }));
+});

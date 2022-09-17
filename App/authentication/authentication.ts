@@ -42,9 +42,14 @@ router.post(
       const { username, password } = req.body;
 
       const [user]: userFromFilter[] = await getUserByFilter(username);
+      console.log(user);
+
+      if (!user) {
+        next({ status: 404, message: "Username does not exist" });
+      }
 
       const match = await bcrypt.compare(password, user.password);
-
+      console.log(match);
       if (match) {
         const jwt = generateToken(user.password, user.id);
         res.status(200).json({
