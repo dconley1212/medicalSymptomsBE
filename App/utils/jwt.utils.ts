@@ -2,8 +2,11 @@ import { sign, SignOptions } from "jsonwebtoken";
 import * as fs from "fs";
 import * as path from "path";
 
-export function generateToken() {
-  const payload = {};
+export function generateToken(username: string, user_id: number) {
+  const payload = {
+    username: username,
+    user_id: user_id,
+  };
 
   const privateKey = fs.readFileSync(
     path.join(__dirname, "../../../private.key")

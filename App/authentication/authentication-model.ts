@@ -5,6 +5,13 @@ export interface user {
   phoneNumber: string;
 }
 
+export interface userFromFilter {
+  id: number;
+  username: string;
+  password: string;
+  phoneNumber: string;
+}
+
 export function getUserByID(id: number) {
   return db("users").where("id", id);
 }

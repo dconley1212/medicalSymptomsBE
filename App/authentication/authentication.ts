@@ -3,8 +3,13 @@ import {
   checkAllFieldsFilled,
   checkUsername,
 } from "./authentication-middleware";
-import { insertUser, getUserByFilter, user } from "./authentication-model";
+import {
+  insertUser,
+  getUserByFilter,
+  userFromFilter,
+} from "./authentication-model";
 import bcrypt from "bcrypt";
+import { generateToken } from "../utils/jwt.utils";
 
 const router = Router();
 
@@ -36,11 +41,18 @@ router.post(
     try {
       const { username, password } = req.body;
 
-      const user: user[] = await getUserByFilter(username);
+      const [user]: userFromFilter[] = await getUserByFilter(username);
 
-      const match = await bcrypt.compare(password, user[0].password);
+      const match = await bcrypt.compare(password, user.password);
 
       if (match) {
+        const jwt = generateToken(user.password, user.id);
+        res.status(200).json({
+          message: `Welcome back ${user.username}!`,
+          token: jwt,
+        });
+      } else {
+        next({ status: 401, message: "invalid credentials" });
       }
     } catch (err) {
       next(err);
