@@ -49,9 +49,10 @@ router.post(
       }
 
       const match = await bcrypt.compare(password, user.password);
-      console.log(match);
+
       if (match) {
-        const jwt = generateToken(user.password, user.id);
+        const jwt = generateToken(user.username, user.id);
+        console.log(jwt);
         res.status(200).json({
           message: `Welcome back ${user.username}!`,
           token: jwt,

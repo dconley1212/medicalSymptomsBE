@@ -43,9 +43,9 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
             next({ status: 404, message: "Username does not exist" });
         }
         const match = yield bcrypt_1.default.compare(password, user.password);
-        console.log(match);
         if (match) {
-            const jwt = (0, jwt_utils_1.generateToken)(user.password, user.id);
+            const jwt = (0, jwt_utils_1.generateToken)(user.username, user.id);
+            console.log(jwt);
             res.status(200).json({
                 message: `Welcome back ${user.username}!`,
                 token: jwt,
