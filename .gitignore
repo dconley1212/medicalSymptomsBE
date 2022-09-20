@@ -4,3 +4,6 @@
 # pivate and public key
 private.pem
 public.pem
+
+#config file
+config.ts

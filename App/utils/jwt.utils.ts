@@ -2,14 +2,12 @@ import { sign, SignOptions } from "jsonwebtoken";
 import * as fs from "fs";
 import * as path from "path";
 import { resolve } from "path";
-import * as dotenv from "dotenv";
+import { passphrase } from "../configuration/config";
 
-dotenv.config({ path: resolve(__dirname, "../../../.env") });
-
-// interface PrivateKey {
-//   key: string;
-//   passphrase: undefined | string;
-// }
+interface PrivateKey {
+  key: string;
+  passphrase: string;
+}
 
 export function generateToken(username: string, id: number) {
   const payload = {
@@ -17,9 +15,9 @@ export function generateToken(username: string, id: number) {
     id: id,
   };
 
-  const privateKey = {
+  const privateKey: PrivateKey = {
     key: fs.readFileSync(path.join(__dirname, "../../../private.pem"), "utf8"),
-    passphrase: process.env.PASSPHRASE,
+    passphrase: passphrase,
   };
 
   const signInOptions: SignOptions = {
