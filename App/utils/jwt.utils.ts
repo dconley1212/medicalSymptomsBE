@@ -1,4 +1,4 @@
-import { sign, SignOptions } from "jsonwebtoken";
+import { sign, SignOptions, verify, VerifyOptions } from "jsonwebtoken";
 import * as fs from "fs";
 import * as path from "path";
 import { resolve } from "path";
@@ -26,4 +26,26 @@ export function generateToken(username: string, id: number) {
   };
 
   return sign(payload, privateKey, signInOptions);
+}
+
+interface TokenPayload {
+  username: string;
+  id: number;
+}
+
+export function validateToken(token: string) {
+  const publicKey = fs.readFileSync(
+    path.join(__dirname, "../../../public.pem")
+  );
+  const verifyOptions: VerifyOptions = {
+    algorithms: ["RS256"],
+  };
+
+  // return new Promise((resolve, reject) => {
+  //     verify(token, publicKey, verifyOptions, (error, decoded: TokenPayload) =>{
+  //         if(error) return reject(error);
+
+  //         resolve(decoded);
+  //     })
+  // });
 }
