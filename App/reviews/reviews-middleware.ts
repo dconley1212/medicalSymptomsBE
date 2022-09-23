@@ -3,6 +3,11 @@ import * as fs from "fs";
 import * as path from "path";
 import jwt, { verify } from "jsonwebtoken";
 
+//need to test this to make sure it works but it looks like it is on the right track
+// my main question was the trying to figure out if I needed the algorithm option part of
+// the parameters for the verify method and how to define the type because what I was trying
+// in the jwt.utils.ts file was not working and giving me an error
+
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
   const publicKey = fs.readFileSync(
     path.join(__dirname, "../../../public.pem")
