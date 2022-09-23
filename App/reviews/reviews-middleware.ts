@@ -8,6 +8,12 @@ import jwt, { verify } from "jsonwebtoken";
 // the parameters for the verify method and how to define the type because what I was trying
 // in the jwt.utils.ts file was not working and giving me an error
 
+/*
+Additionally before testing the validate token I wanted to get the migration file created
+for the new reviews table and be able to set up the model for posting data to the reviews
+table
+*/
+
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
   const publicKey = fs.readFileSync(
     path.join(__dirname, "../../../public.pem")
