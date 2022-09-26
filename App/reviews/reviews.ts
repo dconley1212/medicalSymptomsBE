@@ -1,5 +1,15 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { validateToken } from "./reviews-middleware";
+import {
+  validateToken,
+  checkReviewNameAndItemReviewed,
+} from "./reviews-middleware";
+import { insertReview } from "./reviews-model";
+
+/*
+left off with creating the middleware for if the reviewerName for the item exists
+ then they can't post and added the model for inserting a reivew and filtering for one.
+ I should be able to test the whole functionality next time around
+*/
 
 const router = Router();
 
@@ -8,8 +18,21 @@ router.get("/", (req: Request, res: Response, next: NextFunction) => {});
 router.post(
   "/",
   validateToken,
-  (req: Request, res: Response, next: NextFunction) => {
-    const { reviewerName, itemName, rating, comments } = req.body;
+  checkReviewNameAndItemReviewed,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { reviewerName, itemName, rating, comments } = req.body;
+      const review = await insertReview({
+        reviewerName: reviewerName,
+        itemName: itemName,
+        rating: rating,
+        comments: comments,
+      });
+
+      res.status(200).json(review);
+    } catch (err) {
+      next(err);
+    }
   }
 );
 

@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 const authentication_1 = __importDefault(require("./authentication/authentication"));
+const reviews_1 = __importDefault(require("./reviews/reviews"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = require("path");
 dotenv.config({ path: (0, path_1.resolve)(__dirname, "../../.env") });
@@ -36,6 +37,7 @@ const server = (0, express_1.default)();
 server.use(express_1.default.json());
 server.use((0, cors_1.default)());
 server.use("/auth", authentication_1.default);
+server.use("/reviews", reviews_1.default);
 server.use((err, req, res, next) => {
     res.status(err.status || 500).json({
         custom: "Something went wrong",

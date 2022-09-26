@@ -5,10 +5,11 @@ export async function up(knex: Knex): Promise<void> {
     reviews.increments("review_id");
     reviews.string("reviewerName").notNullable();
     reviews.string("itemName").notNullable();
-    reviews.string("comments").notNullable();
     reviews.integer("rating").notNullable();
-    reviews.foreign("reviewer_id").references("id").inTable("users");
+    reviews.string("comments").notNullable();
   });
 }
 
-export async function down(knex: Knex): Promise<void> {}
+export async function down(knex: Knex): Promise<void> {
+  return knex.schema.dropTableIfExists("reviews");
+}

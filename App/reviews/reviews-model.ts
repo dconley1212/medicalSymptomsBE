@@ -7,6 +7,11 @@ interface Review {
   comments: string;
 }
 
+export async function reviewsByNameFilter(name: string) {
+  const reviewer = await db("reviews").where("reviewerName", name);
+  return reviewer;
+}
+
 export async function insertReview(review: Review) {
   const [submitedReview] = await db("reviews").insert(review, [
     "reviewerName",

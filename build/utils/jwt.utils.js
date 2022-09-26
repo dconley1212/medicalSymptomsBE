@@ -23,16 +23,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateToken = void 0;
+exports.validateToken = exports.generateToken = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
+const config_1 = require("../configuration/config");
 function generateToken(username, id) {
     const payload = {
         username: username,
         id: id,
     };
-    const privateKey = fs.readFileSync(path.join(__dirname, "../../../private.pem"));
+    const privateKey = {
+        key: fs.readFileSync(path.join(__dirname, "../../../private.pem"), "utf8"),
+        passphrase: config_1.passphrase,
+    };
     const signInOptions = {
         algorithm: "RS256",
         expiresIn: "1h",
@@ -40,3 +44,16 @@ function generateToken(username, id) {
     return (0, jsonwebtoken_1.sign)(payload, privateKey, signInOptions);
 }
 exports.generateToken = generateToken;
+function validateToken(token) {
+    const publicKey = fs.readFileSync(path.join(__dirname, "../../../public.pem"));
+    const verifyOptions = {
+        algorithms: ["RS256"],
+    };
+    // return new Promise((resolve, reject) => {
+    //     verify(token, publicKey, verifyOptions, (error, decoded: TokenPayload) =>{
+    //         if(error) return reject(error);
+    //         resolve(decoded);
+    //     })
+    // });
+}
+exports.validateToken = validateToken;
