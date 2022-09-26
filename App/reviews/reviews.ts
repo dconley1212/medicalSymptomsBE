@@ -9,7 +9,7 @@ router.post(
   "/",
   validateToken,
   (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body);
+    const { reviewerName, itemName, rating, comments } = req.body;
   }
 );
 
