@@ -14,13 +14,17 @@ for the new reviews table and be able to set up the model for posting data to th
 table
 */
 
-const validateToken = (req: Request, res: Response, next: NextFunction) => {
+export const validateToken = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const publicKey = fs.readFileSync(
     path.join(__dirname, "../../../public.pem")
   );
 
-  let token = req.headers.authorization?.split(" ")[1];
-
+  let token = req.headers.authorization;
+  console.log(token);
   if (token) {
     verify(token, publicKey, (err, decocded) => {
       if (err) {
@@ -34,3 +38,9 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
     next({ status: 401, message: "missing token" });
   }
 };
+
+export const checkReviewNameAndItemReviewed = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {};
