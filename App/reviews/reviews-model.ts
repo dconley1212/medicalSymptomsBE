@@ -7,6 +7,12 @@ interface Review {
   comments: string;
 }
 
+export async function getAllReviews() {
+  const allReviews = await db("reviews");
+
+  return allReviews;
+}
+
 export async function reviewsByNameFilter(name: string) {
   const reviewer = await db("reviews").where("reviewerName", name);
   return reviewer;

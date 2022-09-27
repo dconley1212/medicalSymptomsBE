@@ -3,7 +3,7 @@ import {
   validateToken,
   checkReviewNameAndItemReviewed,
 } from "./reviews-middleware";
-import { insertReview } from "./reviews-model";
+import { insertReview, getAllReviews } from "./reviews-model";
 
 /*
 left off with creating the middleware for if the reviewerName for the item exists
@@ -13,7 +13,19 @@ left off with creating the middleware for if the reviewerName for the item exist
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response, next: NextFunction) => {});
+router.get(
+  "/",
+  validateToken,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const reviews = await getAllReviews();
+
+      res.status(200).json(reviews);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 router.post(
   "/",
