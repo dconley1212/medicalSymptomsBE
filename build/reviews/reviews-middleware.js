@@ -58,13 +58,14 @@ const validateToken = (req, res, next) => {
 };
 exports.validateToken = validateToken;
 const checkReviewNameAndItemReviewed = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { reviewerName, itemReviewed } = req.body;
+    const { reviewerName, itemName } = req.body;
     const [reviewer] = yield (0, reviews_model_1.reviewsByNameFilter)(reviewerName);
-    if (reviewer.itemReviewed === itemReviewed) {
-        next({ status: 409, message: "you have already reviewed this item" });
+    console.log(reviewer);
+    if (!reviewer || reviewer.itemName !== itemName) {
+        next();
     }
     else {
-        next();
+        next({ status: 409, message: "you have already reviewed this item" });
     }
 });
 exports.checkReviewNameAndItemReviewed = checkReviewNameAndItemReviewed;

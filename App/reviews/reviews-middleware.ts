@@ -34,13 +34,15 @@ export const checkReviewNameAndItemReviewed = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { reviewerName, itemReviewed } = req.body;
+  const { reviewerName, itemName } = req.body;
 
   const [reviewer] = await reviewsByNameFilter(reviewerName);
 
-  if (reviewer.itemReviewed === itemReviewed) {
-    next({ status: 409, message: "you have already reviewed this item" });
-  } else {
+  console.log(reviewer);
+
+  if (!reviewer || reviewer.itemName !== itemName) {
     next();
+  } else {
+    next({ status: 409, message: "you have already reviewed this item" });
   }
 };
