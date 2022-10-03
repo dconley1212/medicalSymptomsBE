@@ -4,13 +4,13 @@ import { validateToken } from "../reviews/reviews-middleware";
 const router = Router();
 
 router.get(
-  "/:id",
+  "/:id/address",
   validateToken,
   (req: Request, res: Response, next: NextFunction) => {}
 );
 
 router.post(
-  "/id",
+  "/:id/address",
   validateToken,
   (req: Request, res: Response, next: NextFunction) => {}
 );
