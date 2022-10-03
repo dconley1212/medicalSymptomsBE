@@ -6,26 +6,19 @@ import {
 import { insertReview, getAllReviews } from "./reviews-model";
 
 /*
-left off with creating the middleware for if the reviewerName for the item exists
- then they can't post and added the model for inserting a reivew and filtering for one.
- I should be able to test the whole functionality next time around
+both routes are working with the database correctly
 */
 
 const router = Router();
 
-router.get(
-  "/",
-  validateToken,
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const reviews = await getAllReviews();
-
-      res.status(200).json(reviews);
-    } catch (err) {
-      next(err);
-    }
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const reviews = await getAllReviews();
+    res.status(200).json(reviews);
+  } catch (err) {
+    next(err);
   }
-);
+});
 
 router.post(
   "/",

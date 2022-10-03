@@ -9,8 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertReview = exports.reviewsByNameFilter = void 0;
+exports.insertReview = exports.reviewsByNameFilter = exports.getAllReviews = void 0;
 const db_config_1 = require("../database/db-config");
+function getAllReviews() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const allReviews = yield (0, db_config_1.db)("reviews");
+        return allReviews;
+    });
+}
+exports.getAllReviews = getAllReviews;
 function reviewsByNameFilter(name) {
     return __awaiter(this, void 0, void 0, function* () {
         const reviewer = yield (0, db_config_1.db)("reviews").where("reviewerName", name);
