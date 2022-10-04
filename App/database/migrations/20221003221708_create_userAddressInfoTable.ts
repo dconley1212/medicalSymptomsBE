@@ -1,4 +1,6 @@
 import { Knex } from "knex";
+// encountered a error with the foreign key designation so I am going to need to start
+// on this tomorrow
 
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable(
@@ -13,7 +15,7 @@ export async function up(knex: Knex): Promise<void> {
       userAddressInfo.string("city").notNullable();
       userAddressInfo.string("state").notNullable();
       userAddressInfo.string("zipcode").notNullable();
-      userAddressInfo.foreign("user_id").references("users.id");
+      userAddressInfo.foreign("id");
     }
   );
 }
