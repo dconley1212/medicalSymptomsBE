@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { validateToken } from "../reviews/reviews-middleware";
+import { addUserAddressInfo, UserAddress } from "./user-account-model";
 
 const router = Router();
 
@@ -12,7 +13,36 @@ router.get(
 router.post(
   "/:id/address",
   validateToken,
-  (req: Request, res: Response, next: NextFunction) => {}
+  async (req: Request, res: Response, next: NextFunction) => {
+    const {
+      username,
+      phone,
+      firstName,
+      lastName,
+      address,
+      apartment_suite_etc,
+      city,
+      state,
+      zipcode,
+    } = req.body;
+
+    const { id } = req.params;
+
+    const userInfo: UserAddress = {
+      username,
+      phone,
+      firstName,
+      lastName,
+      address,
+      apartment_suite_etc,
+      city,
+      state,
+      zipcode,
+      id,
+    };
+    const userAddressInfo = await addUserAddressInfo(userInfo);
+    res.status(200).json(userAddressInfo);
+  }
 );
 
 export default router;

@@ -1,6 +1,6 @@
 import { db } from "../database/db-config";
 
-interface UserAddress {
+export interface UserAddress {
   username: string;
   phone: string;
   firstName: string;
@@ -10,7 +10,7 @@ interface UserAddress {
   city: string;
   state: string;
   zipcode: string;
-  id: number;
+  id: string;
 }
 
 export const addUserAddressInfo = async (userInfo: UserAddress) => {
