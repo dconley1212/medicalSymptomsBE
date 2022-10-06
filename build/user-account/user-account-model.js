@@ -23,7 +23,9 @@ const addUserAddressInfo = (userInfo) => __awaiter(void 0, void 0, void 0, funct
         "city",
         "state",
         "zipcode",
+        "user_id",
     ]);
+    console.log(userAddressInfo);
     return userAddressInfo;
 });
 exports.addUserAddressInfo = addUserAddressInfo;

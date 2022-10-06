@@ -18,7 +18,7 @@ export interface UserAddress {
   city: string;
   state: string;
   zipcode: string;
-  id: string;
+  user_id: number;
 }
 
 export const addUserAddressInfo = async (userInfo: UserAddress) => {
@@ -33,6 +33,9 @@ export const addUserAddressInfo = async (userInfo: UserAddress) => {
     "city",
     "state",
     "zipcode",
+    "user_id",
   ]);
+
+  console.log(userAddressInfo);
   return userAddressInfo;
 };

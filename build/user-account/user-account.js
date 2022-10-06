@@ -21,7 +21,6 @@ router.post("/:id/address", reviews_middleware_1.validateToken, (req, res, next)
     try {
         const { username, phone, firstName, lastName, address, apartment_suite_etc, city, state, zipcode, } = req.body;
         const { id } = req.params;
-        console.log(id);
         const userInfo = {
             username,
             phone,
@@ -32,7 +31,7 @@ router.post("/:id/address", reviews_middleware_1.validateToken, (req, res, next)
             city,
             state,
             zipcode,
-            id,
+            user_id: parseInt(id),
         };
         const userAddressInfo = yield (0, user_account_model_1.addUserAddressInfo)(userInfo);
         res.status(200).json(userAddressInfo);

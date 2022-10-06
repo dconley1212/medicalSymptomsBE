@@ -43,7 +43,7 @@ router.post(
         city,
         state,
         zipcode,
-        id,
+        user_id: parseInt(id),
       };
       const userAddressInfo = await addUserAddressInfo(userInfo);
       res.status(200).json(userAddressInfo);
