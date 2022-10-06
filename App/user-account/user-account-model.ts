@@ -18,6 +18,7 @@ export interface UserAddress {
   city: string;
   state: string;
   zipcode: string;
+  id: string;
 }
 
 export const addUserAddressInfo = async (userInfo: UserAddress) => {

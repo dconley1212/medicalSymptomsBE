@@ -13,8 +13,7 @@ const express_1 = require("express");
 const reviews_middleware_1 = require("./reviews-middleware");
 const reviews_model_1 = require("./reviews-model");
 /*
-left off with inserting my first review into the database and made the get request route
-functional for making a get request on the front-end
+both routes are working with the database correctly
 */
 const router = (0, express_1.Router)();
 router.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

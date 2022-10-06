@@ -33,8 +33,6 @@ router.post(
 
       const { id } = req.params;
 
-      console.log(id);
-
       const userInfo: UserAddress = {
         username,
         phone,
