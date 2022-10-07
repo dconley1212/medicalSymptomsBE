@@ -21,8 +21,12 @@ export interface UserAddress {
   user_id: number;
 }
 
+export const getUserAddressInfo = async (user_id: number) => {
+  const addressInfo = await db("userAddressInfo").where("user_id", user_id);
+  return addressInfo;
+};
+
 export const addUserAddressInfo = async (userInfo: UserAddress) => {
-  console.log(userInfo);
   const [userAddressInfo] = await db("userAddressInfo").insert(userInfo, [
     "username",
     "phone",
@@ -36,6 +40,5 @@ export const addUserAddressInfo = async (userInfo: UserAddress) => {
     "user_id",
   ]);
 
-  console.log(userAddressInfo);
   return userAddressInfo;
 };

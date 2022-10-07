@@ -29,9 +29,8 @@ router.post(
         city,
         state,
         zipcode,
+        user_id,
       } = req.body;
-
-      const { id } = req.params;
 
       const userInfo: UserAddress = {
         username,
@@ -43,7 +42,7 @@ router.post(
         city,
         state,
         zipcode,
-        user_id: parseInt(id),
+        user_id,
       };
       const userAddressInfo = await addUserAddressInfo(userInfo);
       res.status(200).json(userAddressInfo);
