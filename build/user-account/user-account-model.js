@@ -9,10 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addUserAddressInfo = void 0;
+exports.addUserAddressInfo = exports.getUserAddressInfo = void 0;
 const db_config_1 = require("../database/db-config");
+const getUserAddressInfo = (user_id) => __awaiter(void 0, void 0, void 0, function* () {
+    const addressInfo = yield (0, db_config_1.db)("userAddressInfo").where("user_id", user_id);
+    return addressInfo;
+});
+exports.getUserAddressInfo = getUserAddressInfo;
 const addUserAddressInfo = (userInfo) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(userInfo);
     const [userAddressInfo] = yield (0, db_config_1.db)("userAddressInfo").insert(userInfo, [
         "username",
         "phone",
@@ -25,7 +29,6 @@ const addUserAddressInfo = (userInfo) => __awaiter(void 0, void 0, void 0, funct
         "zipcode",
         "user_id",
     ]);
-    console.log(userAddressInfo);
     return userAddressInfo;
 });
 exports.addUserAddressInfo = addUserAddressInfo;

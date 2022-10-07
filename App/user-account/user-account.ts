@@ -1,17 +1,22 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { validateToken } from "../reviews/reviews-middleware";
-import { addUserAddressInfo, UserAddress } from "./user-account-model";
-
-// left off trying to post to the userAddressInfo table and got an error when
-// inserting the data. The data shows in the req body, but I need to fix the insert
-// function to the databse
+import {
+  addUserAddressInfo,
+  UserAddress,
+  getUserAddressInfo,
+} from "./user-account-model";
 
 const router = Router();
 
 router.get(
   "/:id/address",
   validateToken,
-  (req: Request, res: Response, next: NextFunction) => {}
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { user_id } = req.body;
+
+    const userAddress = await getUserAddressInfo(user_id);
+    res.status(200).json(userAddress);
+  }
 );
 
 router.post(
