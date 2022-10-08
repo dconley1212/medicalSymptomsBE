@@ -12,10 +12,17 @@ router.get(
   "/:id/address",
   validateToken,
   async (req: Request, res: Response, next: NextFunction) => {
-    const { user_id } = req.body;
+    try {
+      const { id } = req.params;
 
-    const userAddress = await getUserAddressInfo(user_id);
-    res.status(200).json(userAddress);
+      const user_id = parseInt(id);
+
+      const [userAddress] = await getUserAddressInfo(user_id);
+
+      res.status(200).json(userAddress);
+    } catch (err) {
+      next(err);
+    }
   }
 );
 

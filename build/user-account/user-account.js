@@ -14,9 +14,16 @@ const reviews_middleware_1 = require("../reviews/reviews-middleware");
 const user_account_model_1 = require("./user-account-model");
 const router = (0, express_1.Router)();
 router.get("/:id/address", reviews_middleware_1.validateToken, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { user_id } = req.body;
-    const userAddress = yield (0, user_account_model_1.getUserAddressInfo)(user_id);
-    res.status(200).json(userAddress);
+    try {
+        const { id } = req.params;
+        const user_id = parseInt(id);
+        console.log(user_id);
+        const userAddress = yield (0, user_account_model_1.getUserAddressInfo)(user_id);
+        res.status(200).json(userAddress);
+    }
+    catch (err) {
+        next(err);
+    }
 }));
 router.post("/:id/address", reviews_middleware_1.validateToken, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {

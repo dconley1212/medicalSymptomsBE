@@ -13,6 +13,7 @@ exports.addUserAddressInfo = exports.getUserAddressInfo = void 0;
 const db_config_1 = require("../database/db-config");
 const getUserAddressInfo = (user_id) => __awaiter(void 0, void 0, void 0, function* () {
     const addressInfo = yield (0, db_config_1.db)("userAddressInfo").where("user_id", user_id);
+    console.log(addressInfo);
     return addressInfo;
 });
 exports.getUserAddressInfo = getUserAddressInfo;

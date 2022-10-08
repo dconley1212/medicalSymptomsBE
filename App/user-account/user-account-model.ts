@@ -23,6 +23,7 @@ export interface UserAddress {
 
 export const getUserAddressInfo = async (user_id: number) => {
   const addressInfo = await db("userAddressInfo").where("user_id", user_id);
+  console.log(addressInfo);
   return addressInfo;
 };
 
