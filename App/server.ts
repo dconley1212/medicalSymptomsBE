@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import authentication from "./authentication/authentication";
 import reviews from "./reviews/reviews";
 import userAccount from "./user-account/user-account";
+import payment from "./payment/payment";
 import cors from "cors";
 import { resolve } from "path";
 
@@ -20,6 +21,7 @@ server.use(cors());
 server.use("/auth", authentication);
 server.use("/reviews", reviews);
 server.use("/user", userAccount);
+server.use("/payment", payment);
 server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(err.status || 500).json({
     custom: "Something went wrong",

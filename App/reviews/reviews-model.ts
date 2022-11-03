@@ -24,6 +24,7 @@ export async function insertReview(review: Review) {
     "itemName",
     "rating",
     "comments",
+    "review_id",
   ]);
   return submitedReview;
 }

@@ -33,7 +33,6 @@ router.post(
         rating: rating,
         comments: comments,
       });
-      console.log(review);
       res.status(200).json(review);
     } catch (err) {
       next(err);
