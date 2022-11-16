@@ -10,9 +10,10 @@ export const checkIfUserAddressExists = async (
   const user_id = parseInt(id);
 
   const [userAddress] = await getUserAddressInfo(user_id);
-  if (userAddress.user_id) {
-    next();
+
+  if (userAddress === undefined) {
+    next({ status: 404, message: "User information is needed" });
   } else {
-    next({ status: 404, message: "user information not found" });
+    next();
   }
 };

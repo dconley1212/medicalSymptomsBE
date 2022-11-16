@@ -5,12 +5,14 @@ import {
   UserAddress,
   getUserAddressInfo,
 } from "./user-account-model";
+import { checkIfUserAddressExists } from "./user-account-middleware";
 
 const router = Router();
 
 router.get(
   "/:id/address",
   validateToken,
+  checkIfUserAddressExists,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
