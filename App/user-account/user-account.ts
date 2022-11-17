@@ -66,4 +66,15 @@ router.post(
   }
 );
 
+router.post(
+  "/:id/insuranceInfo",
+  validateToken,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 export default router;
