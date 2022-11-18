@@ -6,6 +6,8 @@ import {
   getUserAddressInfo,
 } from "./user-account-model";
 import { checkIfUserAddressExists } from "./user-account-middleware";
+import multer from "multer";
+const upload = multer({ dest: "uploads/" });
 
 const router = Router();
 
@@ -69,7 +71,10 @@ router.post(
 router.post(
   "/:id/insuranceInfo",
   validateToken,
+  upload.single("insuranceFile"),
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body);
+    console.log(req.file);
     try {
     } catch (error) {
       next(error);
